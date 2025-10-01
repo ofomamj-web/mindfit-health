@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - MindFit Health</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo">MindFit Health</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Revolutionizing Mental Wellness</h1>
+        <p>Advanced Mental Performance Analytics Platform for Student Athletes</p>
+        <a href="services.html" class="cta-button">Explore Our Services</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <h2>Why Choose MindFit Health?</h2>
+        <p>We combine cutting-edge technology with evidence-based mental health practices to help student athletes achieve peak performance.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Performance Analytics</h3>
+                <p>Track and analyze your mental performance metrics with our advanced analytics platform designed specifically for student athletes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Personalized Support</h3>
+                <p>Receive customized mental wellness programs tailored to your unique needs and athletic goals.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Expert Guidance</h3>
+                <p>Access professional mental health resources and guidance from certified sports psychologists and wellness experts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section" style="background-color: white;">
+        <h2>Our Mission</h2>
+        <p>At MindFit Health, we're dedicated to empowering student athletes to achieve their full potential by providing innovative mental performance tools and personalized support. We believe that mental wellness is the foundation of athletic excellence.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MindFit Health. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
