@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - MindFit Health</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo">MindFit Health</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Our Services</h1>
+        <p>Comprehensive Mental Performance Solutions</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <h2>What We Offer</h2>
+        <p>Explore our range of services designed to support student athletes in achieving optimal mental wellness and performance.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Mental Performance Analytics</h3>
+                <p>Access detailed analytics and insights into your mental performance patterns, stress levels, and overall wellness metrics through our advanced tracking system.</p>
+            </div>
+            <div class="feature-card">
+                <h3>One-on-One Coaching</h3>
+                <p>Connect with certified sports psychologists and mental performance coaches who specialize in working with student athletes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Wellness Programs</h3>
+                <p>Participate in structured wellness programs tailored to your specific needs, including mindfulness training, stress management, and performance optimization.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Team Support</h3>
+                <p>Access resources designed for entire teams, including group sessions, team-building exercises, and collective performance tracking.</p>
+            </div>
+            <div class="feature-card">
+                <h3>24/7 Resources</h3>
+                <p>Benefit from round-the-clock access to mental health resources, crisis support, and educational materials tailored for athletes.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Progress Tracking</h3>
+                <p>Monitor your growth and development with our comprehensive progress tracking tools and regular performance reports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MindFit Health. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
