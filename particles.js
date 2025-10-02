@@ -1,13 +1,18 @@
 // Lightweight particle system for cinematic effect
 class ParticleSystem {
     constructor(containerId) {
+        // Check for reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        
         this.container = document.getElementById(containerId);
         if (!this.container) return;
         
         this.canvas = document.createElement('canvas');
-        this.ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d', { alpha: true });
         this.particles = [];
-        this.particleCount = 50;
+        this.particleCount = window.innerWidth < 768 ? 30 : 50; // Fewer particles on mobile
         
         this.setupCanvas();
         this.createParticles();

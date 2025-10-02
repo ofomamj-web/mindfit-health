@@ -1,6 +1,12 @@
 // Scroll-triggered animations using Intersection Observer
 class ScrollAnimations {
     constructor() {
+        // Check for reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Still observe but don't animate
+            this.reducedMotion = true;
+        }
+        
         this.observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -14,9 +20,12 @@ class ScrollAnimations {
         this.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    // Optionally unobserve after animation
-                    // this.observer.unobserve(entry.target);
+                    if (this.reducedMotion) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'none';
+                    } else {
+                        entry.target.classList.add('animate-in');
+                    }
                 }
             });
         }, this.observerOptions);
@@ -29,18 +38,22 @@ class ScrollAnimations {
         // Observe all feature cards
         const cards = document.querySelectorAll('.feature-card');
         cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(40px)';
-            card.dataset.animationDelay = `${index * 0.1}s`;
+            if (!this.reducedMotion) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                card.style.setProperty('--animation-delay', `${index * 0.1}s`);
+            }
             this.observer.observe(card);
         });
         
         // Observe section headings and paragraphs
         const sections = document.querySelectorAll('.section h2, .section > p');
         sections.forEach((section, index) => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.dataset.animationDelay = `${index * 0.1}s`;
+            if (!this.reducedMotion) {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.setProperty('--animation-delay', `${index * 0.1}s`);
+            }
             this.observer.observe(section);
         });
     }
@@ -60,10 +73,6 @@ style.textContent = `
             transform: translateY(0) !important;
         }
     }
-    
-    .feature-card.animate-in {
-        animation-delay: attr(data-animation-delay);
-    }
 `;
 document.head.appendChild(style);
 
@@ -72,18 +81,32 @@ document.addEventListener('DOMContentLoaded', () => {
     new ScrollAnimations();
 });
 
-// Parallax effect for hero section
-document.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.5;
-        hero.style.transform = `translate3d(0, ${rate}px, 0)`;
-    }
-});
+// Parallax effect for hero section (only if not reduced motion)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    
+    document.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.5;
+                    hero.style.transform = `translate3d(0, ${rate}px, 0)`;
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
 
-// Add smooth mouse tracking effect to cards
+// Add smooth mouse tracking effect to cards (only if not reduced motion)
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+    
     const cards = document.querySelectorAll('.feature-card');
     
     cards.forEach(card => {

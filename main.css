@@ -1,4 +1,5 @@
 /* Global Styles */
+/* Cinematic Fonts - Fallback to system fonts if needed */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -523,4 +524,21 @@ a, button, .feature-card, .cta-button {
 ::-moz-selection {
     background: var(--accent-color);
     color: var(--primary-bg);
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .hero::before,
+    body::before {
+        animation: none !important;
+    }
 }
